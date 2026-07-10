@@ -100,14 +100,24 @@ export function PageHeader({
 }) {
   return (
     <div className="mb-4 flex flex-wrap items-start justify-between gap-3 sm:mb-6">
-      <div>
-        <h1 className="flex items-center gap-2 text-lg font-black sm:text-xl">
-          {emoji && <span aria-hidden>{emoji}</span>}
-          {title}
-        </h1>
-        {subtitle && (
-          <p className="mt-0.5 text-xs text-ink/60 sm:text-sm">{subtitle}</p>
+      <div className="flex items-start gap-3">
+        {emoji && (
+          <span
+            aria-hidden
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-2 border-ink bg-sunny text-xl shadow-[3px_3px_0_0_var(--color-ink)] sm:h-11 sm:w-11 sm:text-2xl"
+          >
+            {emoji}
+          </span>
         )}
+        <div>
+          <h1 className="text-lg font-black sm:text-xl">{title}</h1>
+          <span className="mt-1 block h-1.5 w-24 rounded-full border border-ink bg-[linear-gradient(90deg,var(--color-coral)_0%,var(--color-sunny)_35%,var(--color-mint)_70%,var(--color-sky)_100%)]" />
+          {subtitle && (
+            <p className="mt-1 text-xs font-bold text-ink/70 sm:text-sm">
+              {subtitle}
+            </p>
+          )}
+        </div>
       </div>
       {action}
     </div>
@@ -129,19 +139,29 @@ export function StatCard({
   value,
   hint,
   color = "plain",
+  emoji,
 }: {
   label: string;
   value: React.ReactNode;
   hint?: string;
   color?: keyof typeof statColors;
+  emoji?: string;
 }) {
   return (
-    <Card className={cx("p-3 sm:p-4", statColors[color])}>
-      <p className="text-[11px] font-bold uppercase tracking-wide text-ink/60 sm:text-xs">
+    <Card className={cx("relative overflow-hidden p-3 sm:p-4", statColors[color])}>
+      {emoji && (
+        <span
+          aria-hidden
+          className="absolute -right-1 -top-1 flex h-9 w-9 items-center justify-center rounded-bl-2xl rounded-tr-xl border-b-2 border-l-2 border-ink bg-card text-lg"
+        >
+          {emoji}
+        </span>
+      )}
+      <p className="pr-8 text-[11px] font-black uppercase tracking-wide text-ink/70 sm:text-xs">
         {label}
       </p>
       <p className="mt-1 text-lg font-black sm:text-2xl">{value}</p>
-      {hint && <p className="mt-0.5 text-[11px] text-ink/60">{hint}</p>}
+      {hint && <p className="mt-0.5 text-[11px] font-bold text-ink/60">{hint}</p>}
     </Card>
   );
 }

@@ -17,13 +17,13 @@ import { useStore } from "@/lib/store";
 import { cx } from "./ui";
 
 const NAV = [
-  { href: "/peta", label: "Peta Kamar", icon: LayoutGrid, activeCls: "bg-sky text-white" },
-  { href: "/penghuni", label: "Penghuni", icon: Users, activeCls: "bg-mint text-ink" },
-  { href: "/listrik", label: "Listrik", icon: Zap, activeCls: "bg-sunny text-ink" },
-  { href: "/sewa", label: "Sewa Tahunan", icon: CalendarClock, activeCls: "bg-grape text-white" },
-  { href: "/laporan", label: "Laporan", icon: FileBarChart2, activeCls: "bg-coral text-white" },
-  { href: "/notifikasi", label: "Notifikasi", icon: Bell, activeCls: "bg-peach text-ink" },
-  { href: "/pengaturan", label: "Pengaturan", icon: Settings, activeCls: "bg-ink text-white" },
+  { href: "/peta", label: "Peta Kamar", icon: LayoutGrid, activeCls: "bg-sky text-white", chipCls: "bg-sky-soft" },
+  { href: "/penghuni", label: "Penghuni", icon: Users, activeCls: "bg-mint text-ink", chipCls: "bg-mint-soft" },
+  { href: "/listrik", label: "Listrik", icon: Zap, activeCls: "bg-sunny text-ink", chipCls: "bg-sunny-soft" },
+  { href: "/sewa", label: "Sewa Tahunan", icon: CalendarClock, activeCls: "bg-grape text-white", chipCls: "bg-grape-soft" },
+  { href: "/laporan", label: "Laporan", icon: FileBarChart2, activeCls: "bg-coral text-white", chipCls: "bg-coral-soft" },
+  { href: "/notifikasi", label: "Notifikasi", icon: Bell, activeCls: "bg-peach text-ink", chipCls: "bg-coral-soft" },
+  { href: "/pengaturan", label: "Pengaturan", icon: Settings, activeCls: "bg-ink text-white", chipCls: "bg-gray-200" },
 ];
 
 // Item yang muncul di bottom nav HP (maks 5)
@@ -57,23 +57,30 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           </p>
         </div>
         <nav className="flex-1 space-y-1.5 overflow-y-auto p-3">
-          {NAV.map(({ href, label, icon: Icon, activeCls }) => {
+          {NAV.map(({ href, label, icon: Icon, activeCls, chipCls }) => {
             const active = pathname.startsWith(href);
             return (
               <Link
                 key={href}
                 href={href}
                 className={cx(
-                  "flex items-center gap-3 rounded-xl border-2 px-3 py-2 text-sm font-bold transition-all",
+                  "flex items-center gap-2.5 rounded-xl border-2 px-2.5 py-2 text-sm font-bold transition-all",
                   active
                     ? cx(
                         "border-ink shadow-[3px_3px_0_0_var(--color-ink)]",
                         activeCls
                       )
-                    : "border-transparent text-ink/70 hover:border-ink hover:bg-card"
+                    : "border-transparent text-ink hover:border-ink hover:bg-card"
                 )}
               >
-                <Icon size={17} />
+                <span
+                  className={cx(
+                    "flex h-7 w-7 items-center justify-center rounded-lg border-2 border-ink",
+                    active ? "bg-card text-ink" : chipCls
+                  )}
+                >
+                  <Icon size={15} />
+                </span>
                 <span className="flex-1">{label}</span>
                 {href === "/notifikasi" && unreadCount > 0 && (
                   <span className="rounded-full border-2 border-ink bg-coral px-1.5 py-0.5 text-[10px] font-black text-white">
@@ -137,7 +144,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {/* Bottom nav mobile */}
         <nav className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-ink bg-card pb-[env(safe-area-inset-bottom)] lg:hidden">
           <div className="grid grid-cols-5">
-            {MOBILE_NAV.map(({ href, label, icon: Icon, activeCls }) => {
+            {MOBILE_NAV.map(({ href, label, icon: Icon, activeCls, chipCls }) => {
               const active = pathname.startsWith(href);
               return (
                 <Link
@@ -147,15 +154,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 >
                   <span
                     className={cx(
-                      "rounded-lg px-2.5 py-1 transition-all",
+                      "rounded-lg border-2 px-2.5 py-1 transition-all",
                       active
-                        ? cx("border-2 border-ink", activeCls)
-                        : "text-ink/50"
+                        ? cx("border-ink", activeCls)
+                        : cx("border-transparent text-ink/70", chipCls)
                     )}
                   >
                     <Icon size={18} />
                   </span>
-                  <span className={active ? "text-ink" : "text-ink/50"}>
+                  <span className={active ? "text-ink" : "text-ink/60"}>
                     {label.split(" ")[0]}
                   </span>
                 </Link>

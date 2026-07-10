@@ -34,6 +34,14 @@ const TILE_STYLE: Record<RoomStatus, string> = {
   perbaikan: "bg-sunny-soft",
 };
 
+const FILTER_ACTIVE: Record<Filter, string> = {
+  semua: "bg-ink text-white",
+  terisi: "bg-mint text-ink",
+  kosong: "bg-sunny text-ink",
+  perbaikan: "bg-peach text-ink",
+  menunggak: "bg-coral text-white",
+};
+
 export default function PetaKamarPage() {
   const { data, updateRoomStatus, updateRoomRate, payBill, payAnnual } =
     useStore();
@@ -118,10 +126,10 @@ export default function PetaKamarPage() {
       />
 
       <div className="mb-4 grid grid-cols-2 gap-2 sm:mb-6 sm:grid-cols-4 sm:gap-3">
-        <StatCard label="Total Kamar" value={stats.total} color="sky" />
-        <StatCard label="Terisi" value={stats.terisi} color="mint" />
-        <StatCard label="Kosong" value={stats.kosong} color="sunny" />
-        <StatCard label="Menunggak" value={stats.menunggak} color="coral" />
+        <StatCard label="Total Kamar" value={stats.total} color="sky" emoji="🏠" />
+        <StatCard label="Terisi" value={stats.terisi} color="mint" emoji="🙋" />
+        <StatCard label="Kosong" value={stats.kosong} color="sunny" emoji="🛏️" />
+        <StatCard label="Menunggak" value={stats.menunggak} color="coral" emoji="🚨" />
       </div>
 
       <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
@@ -131,7 +139,9 @@ export default function PetaKamarPage() {
             onClick={() => setFilter(f.key)}
             className={cx(
               "whitespace-nowrap rounded-full border-2 border-ink px-3 py-1.5 text-xs font-bold transition-colors cursor-pointer",
-              filter === f.key ? "bg-ink text-white" : "bg-card hover:bg-sunny"
+              filter === f.key
+                ? FILTER_ACTIVE[f.key]
+                : "bg-card hover:bg-sunny-soft"
             )}
           >
             {f.label}
@@ -147,8 +157,8 @@ export default function PetaKamarPage() {
 
       {floors.map(([floor, rooms]) => (
         <section key={floor} className="mb-6">
-          <h2 className="mb-2 inline-block rounded-full border-2 border-ink bg-grape-soft px-3 py-0.5 text-xs font-black uppercase tracking-wide">
-            Lantai {floor}
+          <h2 className="mb-2 inline-block rounded-full border-2 border-ink bg-grape-soft px-3 py-0.5 text-xs font-black uppercase tracking-wide shadow-[2px_2px_0_0_var(--color-ink)]">
+            🏢 Lantai {floor}
           </h2>
           <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 lg:grid-cols-6">
             {rooms.map((r) => {

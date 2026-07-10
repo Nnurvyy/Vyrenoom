@@ -77,16 +77,19 @@ export default function SewaPage() {
           label="Belum Dibayar"
           value={unpaid.length}
           color={unpaid.length ? "coral" : "mint"}
+          emoji={unpaid.length ? "😬" : "😎"}
         />
         <StatCard
           label="Nilai Tunggakan"
           value={rupiah(unpaidTotal)}
           color={unpaidTotal ? "coral" : "mint"}
+          emoji="💸"
         />
         <StatCard
           label="Sewa Berakhir ≤ 60 hari"
           value={expiringSoon.length}
           color={expiringSoon.length ? "sunny" : "grape"}
+          emoji="⏰"
         />
       </div>
 

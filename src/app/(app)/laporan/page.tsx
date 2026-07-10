@@ -187,24 +187,28 @@ export default function LaporanPage() {
           value={rupiah(electricityIncome)}
           hint={`${paidBills.length} pembayaran`}
           color="sunny"
+          emoji="⚡"
         />
         <StatCard
           label="Pemasukan Sewa"
           value={rupiah(rentIncome)}
           hint={`${paidAnnuals.length} pembayaran`}
           color="grape"
+          emoji="🏠"
         />
         <StatCard
           label="Total Pemasukan"
           value={rupiah(electricityIncome + rentIncome)}
           hint={fmtPeriod(month)}
           color="mint"
+          emoji="💰"
         />
         <StatCard
           label="Total Tunggakan"
           value={rupiah(arrearsTotal)}
           hint={`${arrears.length} tagihan`}
           color={arrearsTotal ? "coral" : "mint"}
+          emoji={arrearsTotal ? "🚨" : "🎉"}
         />
       </div>
 

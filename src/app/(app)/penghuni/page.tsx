@@ -17,6 +17,7 @@ import {
   PageHeader,
   Pagination,
   Select,
+  StatCard,
   cx,
   usePagination,
 } from "@/components/ui";
@@ -67,6 +68,27 @@ export default function PenghuniPage() {
           </Button>
         }
       />
+
+      <div className="mb-4 grid grid-cols-3 gap-2 sm:gap-3">
+        <StatCard
+          label="Penghuni Aktif"
+          value={data.tenants.filter((t) => t.status === "aktif").length}
+          color="mint"
+          emoji="🙋"
+        />
+        <StatCard
+          label="Sudah Keluar"
+          value={data.tenants.filter((t) => t.status === "nonaktif").length}
+          color="grape"
+          emoji="👋"
+        />
+        <StatCard
+          label="Kamar Kosong"
+          value={data.rooms.filter((r) => r.status === "kosong").length}
+          color="sunny"
+          emoji="🛏️"
+        />
+      </div>
 
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <Input

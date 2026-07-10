@@ -58,9 +58,14 @@ export default function NotifikasiPage() {
             onClick={() => setTab(t.key)}
             className={cx(
               "rounded-full border-2 border-ink px-3 py-1.5 text-xs font-bold cursor-pointer",
-              tab === t.key ? "bg-ink text-white" : "bg-card hover:bg-sunny"
+              tab === t.key
+                ? t.key === "belum"
+                  ? "bg-coral text-white"
+                  : "bg-sky text-white"
+                : "bg-card hover:bg-sunny-soft"
             )}
           >
+            {t.key === "belum" ? "📬 " : "🗂️ "}
             {t.label}
           </button>
         ))}

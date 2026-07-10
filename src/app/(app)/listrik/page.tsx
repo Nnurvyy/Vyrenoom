@@ -68,16 +68,23 @@ export default function ListrikPage() {
       />
 
       <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
-        <StatCard label="Total Tagihan" value={data.bills.length} color="sky" />
+        <StatCard
+          label="Total Tagihan"
+          value={data.bills.length}
+          color="sky"
+          emoji="🧾"
+        />
         <StatCard
           label="Belum Dibayar"
           value={unpaid.length}
           color={unpaid.length ? "coral" : "mint"}
+          emoji={unpaid.length ? "😬" : "😎"}
         />
         <StatCard
           label="Nilai Tunggakan"
           value={rupiah(unpaidTotal)}
           color={unpaidTotal ? "coral" : "mint"}
+          emoji="💸"
         />
       </div>
 

@@ -7,10 +7,10 @@
   --font-mono: var(--font-jetbrains-mono), monospace;
 
   /* Palet playful — netral, rame, penuh warna */
-  --color-ink: #2b2b2b;
-  --color-surface: #fff7ea;
+  --color-ink: #1f1f1f;
+  --color-surface: #fdf1dc;
   --color-card: #ffffff;
-  --color-line: #2b2b2b;
+  --color-line: #1f1f1f;
   --color-brand: #4d96ff;
   --color-brand-dark: #2f6fe0;
   --color-brand-soft: #dbeafe;
@@ -34,8 +34,8 @@ body {
 
 body {
   background-color: var(--color-surface);
-  background-image: radial-gradient(#2b2b2b0f 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image: radial-gradient(#1f1f1f1c 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-tap-highlight-color: transparent;
